@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     console.log(cookie)
     visitorId = cookie['visitorId'] != null ? cookie['visitorId'] : nextVisitorId++;
     //visitorId = nextVisitorId++;
-    lastvisit = (Date.now() - new Date(parseInt(cookie["visited"]))) / 1000
+    lastvisit = Math.round((Date.now() - new Date(parseInt(cookie["visited"]))) / 1000)
     res.cookie('visitorId', visitorId);
     res.cookie('visited', Date.now().toString());
     res.render('welcome', {
