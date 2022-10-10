@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
     console.log(cookie)
     visitorId = cookie['visitorId'] != null ? cookie['visitorId'] : nextVisitorId++;
     //visitorId = nextVisitorId++;
+    lastvisit = (Date.now() - new Date(parseInt(cookie["visited"]))) / 1000
     res.cookie('visitorId', visitorId);
     res.cookie('visited', Date.now().toString());
     res.render('welcome', {
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
         date: new Date().toLocaleString(),
         visitorId: visitorId,
         diff: cookie['visited'] == null ? "You have never visited" : "It has been " +
-            Math.round((Date.now() - new Date(parseInt(cookie["visited"]))) / 1000) + " seconds since your last visit"
+             lastvisit + " seconds since your last visit"
         //diff: Math.round((Date.now() - new Date(parseInt(cookie['visited']))) / 1000)
     });
 });
