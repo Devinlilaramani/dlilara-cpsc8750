@@ -58,11 +58,11 @@ app.get("/trivia", async (req, res) => {
     correctAnswer = content.results[0]['correct_answer'];
     answers = content.results[0]['incorrect_answers'];
     answers.push(correctAnswer)
-    let shuffledAnswers = answers.sort(function() {
+    let shuffled = answers.sort(function() {
         return Math.random() - 0.5;
     });
 
-    const answerLinks = shuffledAnswers.map(answer => {
+    const answerLinks = shuffled.map(answer => {
     return `<a style='color:green' href="javascript:alert('${
     answer === correctAnswer ? 'Correct!' : 'Incorrect, Please Try Again!'
     }')">${answer}</a>
